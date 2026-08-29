@@ -16,7 +16,7 @@ export const Route = createFileRoute("/_authenticated/complaints/")({
       { name: "description", content: "Every complaint you have filed, with status and priority." },
     ],
   }),
-  component: MyComplaints;
+  component: MyComplaints,
 });
 
 function MyComplaints() {
