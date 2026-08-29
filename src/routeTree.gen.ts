@@ -13,8 +13,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedSubmitRouteImport } from './routes/_authenticated/submit'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminComplaintsRouteImport } from './routes/_authenticated/admin.complaints'
 import { Route as AuthenticatedComplaintsIndexRouteImport } from './routes/_authenticated/complaints.index'
 import { Route as AuthenticatedComplaintsIdRouteImport } from './routes/_authenticated/complaints.$id'
 
@@ -37,6 +40,11 @@ const RegisterRoute = RegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
@@ -47,6 +55,17 @@ const AuthenticatedSubmitRoute = AuthenticatedSubmitRouteImport.update({
   path: '/submit',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminComplaintsRoute =
+  AuthenticatedAdminComplaintsRouteImport.update({
+    id: '/complaints',
+    path: '/complaints',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedComplaintsIndexRoute =
   AuthenticatedComplaintsIndexRouteImport.update({
     id: '/complaints/',
@@ -64,9 +83,12 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/register': typeof RegisterRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/submit': typeof AuthenticatedSubmitRoute
+  '/admin/complaints': typeof AuthenticatedAdminComplaintsRoute
   '/complaints/$id': typeof AuthenticatedComplaintsIdRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
   '/complaints/': typeof AuthenticatedComplaintsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -75,7 +97,9 @@ export interface FileRoutesByTo {
   '/register': typeof RegisterRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/submit': typeof AuthenticatedSubmitRoute
+  '/admin/complaints': typeof AuthenticatedAdminComplaintsRoute
   '/complaints/$id': typeof AuthenticatedComplaintsIdRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
   '/complaints': typeof AuthenticatedComplaintsIndexRoute
 }
 export interface FileRoutesById {
@@ -84,9 +108,12 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/register': typeof RegisterRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/submit': typeof AuthenticatedSubmitRoute
+  '/_authenticated/admin/complaints': typeof AuthenticatedAdminComplaintsRoute
   '/_authenticated/complaints/$id': typeof AuthenticatedComplaintsIdRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
   '/_authenticated/complaints/': typeof AuthenticatedComplaintsIndexRoute
 }
 export interface FileRouteTypes {
@@ -95,9 +122,12 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/register'
+    | '/admin'
     | '/dashboard'
     | '/submit'
+    | '/admin/complaints'
     | '/complaints/$id'
+    | '/admin/'
     | '/complaints/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -106,7 +136,9 @@ export interface FileRouteTypes {
     | '/register'
     | '/dashboard'
     | '/submit'
+    | '/admin/complaints'
     | '/complaints/$id'
+    | '/admin'
     | '/complaints'
   id:
     | '__root__'
@@ -114,9 +146,12 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/auth'
     | '/register'
+    | '/_authenticated/admin'
     | '/_authenticated/dashboard'
     | '/_authenticated/submit'
+    | '/_authenticated/admin/complaints'
     | '/_authenticated/complaints/$id'
+    | '/_authenticated/admin/'
     | '/_authenticated/complaints/'
   fileRoutesById: FileRoutesById
 }
@@ -157,6 +192,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -170,6 +212,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/submit'
       preLoaderRoute: typeof AuthenticatedSubmitRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/complaints': {
+      id: '/_authenticated/admin/complaints'
+      path: '/complaints'
+      fullPath: '/admin/complaints'
+      preLoaderRoute: typeof AuthenticatedAdminComplaintsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/complaints/': {
       id: '/_authenticated/complaints/'
@@ -188,7 +244,21 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminComplaintsRoute: typeof AuthenticatedAdminComplaintsRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminComplaintsRoute: AuthenticatedAdminComplaintsRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedSubmitRoute: typeof AuthenticatedSubmitRoute
   AuthenticatedComplaintsIdRoute: typeof AuthenticatedComplaintsIdRoute
@@ -196,6 +266,7 @@ interface AuthenticatedRouteRouteChildren {
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedSubmitRoute: AuthenticatedSubmitRoute,
   AuthenticatedComplaintsIdRoute: AuthenticatedComplaintsIdRoute,
