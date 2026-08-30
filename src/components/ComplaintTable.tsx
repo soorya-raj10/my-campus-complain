@@ -21,7 +21,8 @@ export function ComplaintTable({
             <th className="px-3 py-2.5 font-medium">Category</th>
             <th className="px-3 py-2.5 font-medium">Status</th>
             <th className="px-3 py-2.5 font-medium">Priority</th>
-            <th className="px-5 py-2.5 text-right font-medium">Filed</th>
+            <th className="px-3 py-2.5 font-medium">Filed</th>
+            <th className="px-5 py-2.5 text-right font-medium">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -57,8 +58,17 @@ export function ComplaintTable({
               <td className={cn("px-3 py-3 font-medium", PRIORITY_CLASS[complaint.priority])}>
                 {complaint.priority}
               </td>
-              <td className="px-5 py-3 text-right font-mono text-xs text-ink-soft">
+              <td className="px-3 py-3 font-mono text-xs text-ink-soft">
                 {formatDate(complaint.created_at)}
+              </td>
+              <td className="px-5 py-3 text-right">
+                <Link
+                  to="/complaints/$id"
+                  params={{ id: complaint.id }}
+                  className="inline-flex items-center rounded-md border border-line bg-paper px-3 py-1.5 text-xs font-medium text-ink transition-colors hover:border-accent/60 hover:text-accent"
+                >
+                  Manage
+                </Link>
               </td>
             </tr>
           ))}
