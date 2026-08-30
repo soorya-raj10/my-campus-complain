@@ -97,7 +97,7 @@ function RegisterPage() {
     <AuthCard
       eyebrow="Register"
       title="Create your account"
-      description="Students register here. Staff accounts are issued by the registrar's office."
+      description="Students register with their college email. Registrar staff accounts use an @admin.edu address and unlock the admin console."
       footer={
         <>
           Already registered?{" "}
