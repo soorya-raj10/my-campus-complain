@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { AppShell } from "@/components/AppShell";
 import { ErrorNote, Panel } from "@/components/data-states";
 import { Field } from "@/components/AuthCard";
-import { CATEGORIES, PRIORITIES, type Category, type Priority } from "@/lib/complaints";
+import { CATEGORIES, PRIORITIES, categoryLabel, type Category, type Priority } from "@/lib/complaints";
 import { addUpdate, uploadAttachment } from "@/lib/complaintsApi";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/useAuth";

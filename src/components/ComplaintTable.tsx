@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { StatusBadge } from "@/components/badges";
-import { formatDate, formatDateTime, shortId, type Complaint } from "@/lib/complaints";
+import { categoryLabel, formatDate, formatDateTime, shortId, type Complaint } from "@/lib/complaints";
 import { PRIORITY_CLASS } from "@/lib/complaints";
 import { cn } from "@/lib/utils";
 
@@ -51,7 +51,7 @@ export function ComplaintTable({
                   {studentNames[complaint.student_id] ?? "—"}
                 </td>
               )}
-              <td className="px-3 py-3 text-ink-soft">{complaint.category}</td>
+              <td className="px-3 py-3 text-ink-soft">{categoryLabel(complaint.category)}</td>
               <td className="px-3 py-3">
                 <StatusBadge status={complaint.status} />
               </td>

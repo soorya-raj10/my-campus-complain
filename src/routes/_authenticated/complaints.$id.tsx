@@ -11,6 +11,7 @@ import {
   PRIORITIES,
   PRIORITY_CLASS,
   STATUSES,
+  categoryLabel,
   formatDateTime,
   shortId,
   type Priority,
@@ -129,7 +130,7 @@ function ComplaintDetail() {
         <div className="space-y-6">
           <Panel title="Complaint detail">
             <dl className="grid gap-5 p-5 sm:grid-cols-2">
-              <Detail label="Category" value={complaint.category} />
+              <Detail label="Category" value={categoryLabel(complaint.category)} />
               <Detail label="Location" value={complaint.location || "—"} />
               <Detail
                 label="Priority"
