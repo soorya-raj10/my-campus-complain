@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/complaints/$id")({
   head: () => ({
     meta: [
-      { title: "Complaint Detail | ABC University Student Complaint Management System" },
+      { title: "Complaint Detail | ABC University" },
       { name: "description", content: "Full complaint detail, status and update history." },
     ],
   }),

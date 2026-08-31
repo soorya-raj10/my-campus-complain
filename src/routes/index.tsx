@@ -5,7 +5,7 @@ import { StatusBadge } from "@/components/badges";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "College Complaint Management System | ABC University" },
+      { title: "ABC University Student Complaint Management System" },
       {
         name: "description",
         content:

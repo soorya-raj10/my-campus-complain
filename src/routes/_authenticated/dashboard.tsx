@@ -9,7 +9,7 @@ import { useAuth } from "@/lib/useAuth";
 export const Route = createFileRoute("/_authenticated/dashboard")({
   head: () => ({
     meta: [
-      { title: "Student Dashboard | ABC University Student Complaint Management System" },
+      { title: "Student Dashboard | ABC University" },
       { name: "description", content: "Your complaint totals and most recent submissions." },
     ],
   }),

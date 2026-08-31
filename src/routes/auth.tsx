@@ -15,7 +15,7 @@ export const Route = createFileRoute("/auth")({
         name: "description",
         content: "Sign in to file a campus complaint or manage the college complaint registry.",
       },
-      { property: "og:title", content: "Login | ABC University Student Complaint Management System" },
+      { property: "og:title", content: "Login | ABC University" },
       { property: "og:description", content: "Sign in to the college complaint registry." },
     ],
   }),
