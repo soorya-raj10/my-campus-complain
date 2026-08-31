@@ -10,7 +10,7 @@ import { AuthCard, Field } from "@/components/AuthCard";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Login | College Complaint Management System" },
+      { title: "Login | ABC University Complaints" },
       {
         name: "description",
         content: "Sign in to file a campus complaint or manage the college complaint registry.",
