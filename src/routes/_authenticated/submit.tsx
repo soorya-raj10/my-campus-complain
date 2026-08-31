@@ -121,9 +121,10 @@ function SubmitComplaint() {
               >
                 {CATEGORIES.map((category) => (
                   <option key={category} value={category}>
-                    {category}
+                    {categoryLabel(category)}
                   </option>
                 ))}
+
               </select>
             </Field>
             <Field label="Priority" htmlFor="priority">
