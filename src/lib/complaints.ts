@@ -35,12 +35,17 @@ export const STATUSES = [
 
 export const DEPARTMENTS = [
   "Administration",
+  "Academic Office",
   "Maintenance",
+  "Electrical Maintenance",
+  "Plumbing & Sanitation",
+  "Housekeeping",
   "IT Department",
   "Hostel Management",
   "Transportation Department",
   "Laboratory Department",
 ] as const;
+
 
 export type Category = (typeof CATEGORIES)[number];
 export type Priority = (typeof PRIORITIES)[number];
