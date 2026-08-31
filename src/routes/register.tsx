@@ -10,12 +10,12 @@ import { AuthCard, Field } from "@/components/AuthCard";
 export const Route = createFileRoute("/register")({
   head: () => ({
     meta: [
-      { title: "Register | College Complaint Management System" },
+      { title: "Register | ABC University Complaints" },
       {
         name: "description",
         content: "Create a student account to file and track college complaints.",
       },
-      { property: "og:title", content: "Register | College Complaint Registry" },
+      { property: "og:title", content: "Register | ABC University" },
       {
         property: "og:description",
         content: "Create a student account to file and track college complaints.",
@@ -97,7 +97,7 @@ function RegisterPage() {
     <AuthCard
       eyebrow="Register"
       title="Create your account"
-      description="Students register with their college email. Registrar staff accounts use an @admin.edu address and unlock the admin console."
+      description="Register with your ABC University email to file and track complaints. All new accounts receive student access; administrator access is granted only to pre-authorized staff accounts."
       footer={
         <>
           Already registered?{" "}

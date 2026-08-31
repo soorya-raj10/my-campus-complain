@@ -20,9 +20,9 @@ export function AuthCard({
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
           <Link to="/">
             <div className="font-display text-[20px] leading-none font-semibold tracking-tight">
-              Meridian College
+              ABC University
             </div>
-            <div className="label-mono mt-1">Complaint Registry</div>
+            <div className="label-mono mt-1">Student Complaint Management System</div>
           </Link>
         </div>
       </header>

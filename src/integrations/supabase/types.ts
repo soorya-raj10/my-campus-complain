@@ -14,6 +14,21 @@ export type Database = {
   }
   public: {
     Tables: {
+      admin_allowlist: {
+        Row: {
+          created_at: string
+          email: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+        }
+        Relationships: []
+      }
       complaint_updates: {
         Row: {
           action: string
@@ -178,6 +193,10 @@ export type Database = {
         | "Cleanliness"
         | "Infrastructure"
         | "Other"
+        | "Projector/Smart Board"
+        | "Electrical"
+        | "Plumbing"
+        | "Academic Issue"
       complaint_priority: "Low" | "Medium" | "High" | "Critical"
       complaint_status:
         | "Submitted"
@@ -323,6 +342,10 @@ export const Constants = {
         "Cleanliness",
         "Infrastructure",
         "Other",
+        "Projector/Smart Board",
+        "Electrical",
+        "Plumbing",
+        "Academic Issue",
       ],
       complaint_priority: ["Low", "Medium", "High", "Critical"],
       complaint_status: [

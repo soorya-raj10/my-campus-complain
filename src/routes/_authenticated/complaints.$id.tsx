@@ -11,6 +11,7 @@ import {
   PRIORITIES,
   PRIORITY_CLASS,
   STATUSES,
+  categoryLabel,
   formatDateTime,
   shortId,
   type Priority,
@@ -30,7 +31,7 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/complaints/$id")({
   head: () => ({
     meta: [
-      { title: "Complaint Detail | College Complaint Registry" },
+      { title: "Complaint Detail | ABC University" },
       { name: "description", content: "Full complaint detail, status and update history." },
     ],
   }),
@@ -129,7 +130,7 @@ function ComplaintDetail() {
         <div className="space-y-6">
           <Panel title="Complaint detail">
             <dl className="grid gap-5 p-5 sm:grid-cols-2">
-              <Detail label="Category" value={complaint.category} />
+              <Detail label="Category" value={categoryLabel(complaint.category)} />
               <Detail label="Location" value={complaint.location || "—"} />
               <Detail
                 label="Priority"

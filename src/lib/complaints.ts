@@ -1,13 +1,26 @@
 export const CATEGORIES = [
-  "Classroom",
-  "Laboratory",
-  "Hostel",
   "Wi-Fi",
-  "Transportation",
+  "Classroom",
+  "Projector/Smart Board",
+  "Electrical",
+  "Plumbing",
+  "Hostel",
   "Cleanliness",
+  "Academic Issue",
+  "Laboratory",
+  "Transportation",
   "Infrastructure",
   "Other",
 ] as const;
+
+export const CATEGORY_LABEL: Record<string, string> = {
+  "Wi-Fi": "Wi-Fi / Internet",
+};
+
+export function categoryLabel(category: string) {
+  return CATEGORY_LABEL[category] ?? category;
+}
+
 
 export const PRIORITIES = ["Low", "Medium", "High", "Critical"] as const;
 
@@ -22,12 +35,17 @@ export const STATUSES = [
 
 export const DEPARTMENTS = [
   "Administration",
+  "Academic Office",
   "Maintenance",
+  "Electrical Maintenance",
+  "Plumbing & Sanitation",
+  "Housekeeping",
   "IT Department",
   "Hostel Management",
   "Transportation Department",
   "Laboratory Department",
 ] as const;
+
 
 export type Category = (typeof CATEGORIES)[number];
 export type Priority = (typeof PRIORITIES)[number];

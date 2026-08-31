@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { AppShell } from "@/components/AppShell";
 import { ErrorNote, Panel } from "@/components/data-states";
 import { Field } from "@/components/AuthCard";
-import { CATEGORIES, PRIORITIES, type Category, type Priority } from "@/lib/complaints";
+import { CATEGORIES, PRIORITIES, categoryLabel, type Category, type Priority } from "@/lib/complaints";
 import { addUpdate, uploadAttachment } from "@/lib/complaintsApi";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/useAuth";
@@ -14,7 +14,7 @@ import { useAuth } from "@/lib/useAuth";
 export const Route = createFileRoute("/_authenticated/submit")({
   head: () => ({
     meta: [
-      { title: "Submit a Complaint | College Complaint Registry" },
+      { title: "Submit a Complaint | ABC University" },
       {
         name: "description",
         content: "File a new campus complaint with category, location, priority and an attachment.",
@@ -121,9 +121,10 @@ function SubmitComplaint() {
               >
                 {CATEGORIES.map((category) => (
                   <option key={category} value={category}>
-                    {category}
+                    {categoryLabel(category)}
                   </option>
                 ))}
+
               </select>
             </Field>
             <Field label="Priority" htmlFor="priority">
