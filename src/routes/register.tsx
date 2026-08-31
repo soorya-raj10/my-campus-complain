@@ -15,7 +15,7 @@ export const Route = createFileRoute("/register")({
         name: "description",
         content: "Create a student account to file and track college complaints.",
       },
-      { property: "og:title", content: "Register | College Complaint Registry" },
+      { property: "og:title", content: "Register | ABC University Student Complaint Management System" },
       {
         property: "og:description",
         content: "Create a student account to file and track college complaints.",

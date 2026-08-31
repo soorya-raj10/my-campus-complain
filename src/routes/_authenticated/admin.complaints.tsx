@@ -11,7 +11,7 @@ import { CATEGORIES, PRIORITIES, STATUSES } from "@/lib/complaints";
 export const Route = createFileRoute("/_authenticated/admin/complaints")({
   head: () => ({
     meta: [
-      { title: "Complaint Management | College Complaint Registry" },
+      { title: "Complaint Management | ABC University Student Complaint Management System" },
       {
         name: "description",
         content: "Search, filter, assign and resolve every complaint filed on campus.",

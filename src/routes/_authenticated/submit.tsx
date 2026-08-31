@@ -14,7 +14,7 @@ import { useAuth } from "@/lib/useAuth";
 export const Route = createFileRoute("/_authenticated/submit")({
   head: () => ({
     meta: [
-      { title: "Submit a Complaint | College Complaint Registry" },
+      { title: "Submit a Complaint | ABC University Student Complaint Management System" },
       {
         name: "description",
         content: "File a new campus complaint with category, location, priority and an attachment.",
