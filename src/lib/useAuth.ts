@@ -6,6 +6,7 @@ export type AuthState = {
   email: string;
   name: string;
   isAdmin: boolean;
+  isStaff: boolean;
 } | null;
 
 export const authQueryKey = ["auth", "session"] as const;
@@ -20,11 +21,14 @@ export async function fetchAuthState(): Promise<AuthState> {
     supabase.from("user_roles").select("role").eq("user_id", user.id),
   ]);
 
+  const roles = (rolesRes.data ?? []).map((r) => r.role);
+
   return {
     userId: user.id,
     email: profileRes.data?.email || user.email || "",
     name: profileRes.data?.name || (user.email ?? "").split("@")[0] || "Student",
-    isAdmin: (rolesRes.data ?? []).some((r) => r.role === "admin"),
+    isAdmin: roles.includes("admin"),
+    isStaff: roles.includes("staff"),
   };
 }
 
@@ -35,6 +39,12 @@ export function useAuth() {
     staleTime: 30_000,
   });
   return { auth: data ?? null, isLoading };
+}
+
+export function homeRouteFor(auth: AuthState) {
+  if (auth?.isAdmin) return "/admin" as const;
+  if (auth?.isStaff) return "/staff" as const;
+  return "/dashboard" as const;
 }
 
 export function initials(name: string) {
