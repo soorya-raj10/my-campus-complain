@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 export const Route = createFileRoute("/_authenticated/complaints/")({
   head: () => ({
     meta: [
-      { title: "My Complaints | ABC University" },
+      { title: "My Complaints | SRM University" },
       { name: "description", content: "Every complaint you have filed, with status and priority." },
     ],
   }),
