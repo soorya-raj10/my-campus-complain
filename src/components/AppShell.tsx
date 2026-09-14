@@ -48,7 +48,7 @@ export function AppShell({
     <div className="flex h-full min-h-0 flex-col">
       <div className="border-b border-line px-6 pt-7 pb-6">
         <div className="font-display text-[22px] leading-none font-semibold tracking-tight">
-          ABC University
+          SRM University
         </div>
         <div className="label-mono mt-1">Student Complaint Management System</div>
       </div>

@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ABC University Student Complaints" },
+      { title: "SRM University Student Complaints" },
       {
         name: "description",
         content: "File, track and resolve campus complaints in one registry.",

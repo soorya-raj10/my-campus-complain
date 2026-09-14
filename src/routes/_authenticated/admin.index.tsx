@@ -8,7 +8,7 @@ import { countByStatus, listAllComplaints, listStudents } from "@/lib/complaints
 export const Route = createFileRoute("/_authenticated/admin/")({
   head: () => ({
     meta: [
-      { title: "Admin Dashboard | ABC University" },
+      { title: "Admin Dashboard | SRM University" },
       { name: "description", content: "Campus-wide complaint statistics and recent submissions." },
     ],
   }),

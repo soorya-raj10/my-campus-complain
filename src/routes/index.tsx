@@ -5,7 +5,7 @@ import { StatusBadge } from "@/components/badges";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ABC University Student Complaint Management System" },
+      { title: "SRM University Student Complaint Management System" },
       {
         name: "description",
         content:
@@ -46,7 +46,7 @@ function Landing() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
           <div>
             <div className="font-display text-[20px] leading-none font-semibold tracking-tight">
-              ABC University
+              SRM University
             </div>
             <div className="label-mono mt-1">Student Complaint Management System</div>
           </div>
@@ -150,7 +150,7 @@ function Landing() {
 
       <footer className="border-t border-line">
         <div className="mx-auto max-w-6xl px-5 py-6 text-xs text-ink-soft sm:px-8">
-          ABC University · Student Complaint Management System
+          SRM University · Student Complaint Management System
         </div>
       </footer>
     </div>

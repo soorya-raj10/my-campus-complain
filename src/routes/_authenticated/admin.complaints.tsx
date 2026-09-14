@@ -11,7 +11,7 @@ import { CATEGORIES, DEPARTMENTS, PRIORITIES, STATUSES, categoryLabel } from "@/
 export const Route = createFileRoute("/_authenticated/admin/complaints")({
   head: () => ({
     meta: [
-      { title: "Complaint Management | ABC University" },
+      { title: "Complaint Management | SRM University" },
       {
         name: "description",
         content: "Search, filter, assign and resolve every complaint filed on campus.",
