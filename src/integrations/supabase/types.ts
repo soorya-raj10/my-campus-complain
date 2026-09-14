@@ -78,6 +78,7 @@ export type Database = {
           admin_comments: string | null
           assigned_department: string | null
           assigned_staff: string | null
+          assigned_staff_id: string | null
           attachment: string | null
           category: Database["public"]["Enums"]["complaint_category"]
           created_at: string
@@ -95,6 +96,7 @@ export type Database = {
           admin_comments?: string | null
           assigned_department?: string | null
           assigned_staff?: string | null
+          assigned_staff_id?: string | null
           attachment?: string | null
           category: Database["public"]["Enums"]["complaint_category"]
           created_at?: string
@@ -112,6 +114,7 @@ export type Database = {
           admin_comments?: string | null
           assigned_department?: string | null
           assigned_staff?: string | null
+          assigned_staff_id?: string | null
           attachment?: string | null
           category?: Database["public"]["Enums"]["complaint_category"]
           created_at?: string
