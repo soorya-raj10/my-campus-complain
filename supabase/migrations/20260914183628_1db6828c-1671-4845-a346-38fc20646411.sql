@@ -1,0 +1,1 @@
+REVOKE ALL ON FUNCTION public.restrict_staff_complaint_update() FROM PUBLIC, anon, authenticated;

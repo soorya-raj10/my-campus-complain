@@ -62,6 +62,7 @@ export type Complaint = {
   status: Status;
   assigned_department: string | null;
   assigned_staff: string | null;
+  assigned_staff_id: string | null;
   attachment: string | null;
   admin_comments: string | null;
   resolution_details: string | null;

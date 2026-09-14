@@ -104,3 +104,65 @@ export function countByStatus(complaints: Complaint[]) {
   for (const complaint of complaints) counts[complaint.status] += 1;
   return counts;
 }
+
+export type StaffAccount = { id: string; name: string; email: string };
+
+export async function listAssignedComplaints(userId: string): Promise<Complaint[]> {
+  const { data, error } = await supabase
+    .from("complaints")
+    .select("*")
+    .eq("assigned_staff_id", userId)
+    .order("created_at", { ascending: false });
+  if (error) throw error;
+  return (data ?? []) as Complaint[];
+}
+
+export async function listStaffAccounts(): Promise<StaffAccount[]> {
+  const { data: roleRows, error: roleError } = await supabase
+    .from("user_roles")
+    .select("user_id")
+    .eq("role", "staff");
+  if (roleError) throw roleError;
+  const ids = [...new Set((roleRows ?? []).map((r) => r.user_id))];
+  if (ids.length === 0) return [];
+  const { data, error } = await supabase.from("profiles").select("id, name, email").in("id", ids);
+  if (error) throw error;
+  return (data ?? [])
+    .map((row) => ({ id: row.id, name: row.name || row.email, email: row.email }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+export type ManagedUser = StaffAccount & { roles: string[] };
+
+export async function listManagedUsers(): Promise<ManagedUser[]> {
+  const [profilesRes, rolesRes] = await Promise.all([
+    supabase.from("profiles").select("id, name, email").order("name"),
+    supabase.from("user_roles").select("user_id, role"),
+  ]);
+  if (profilesRes.error) throw profilesRes.error;
+  if (rolesRes.error) throw rolesRes.error;
+  const byUser = new Map<string, string[]>();
+  for (const row of rolesRes.data ?? []) {
+    byUser.set(row.user_id, [...(byUser.get(row.user_id) ?? []), row.role]);
+  }
+  return (profilesRes.data ?? []).map((row) => ({
+    id: row.id,
+    name: row.name || row.email,
+    email: row.email,
+    roles: byUser.get(row.id) ?? [],
+  }));
+}
+
+export async function grantStaffRole(userId: string) {
+  const { error } = await supabase.from("user_roles").insert({ user_id: userId, role: "staff" });
+  if (error) throw error;
+}
+
+export async function revokeStaffRole(userId: string) {
+  const { error } = await supabase
+    .from("user_roles")
+    .delete()
+    .eq("user_id", userId)
+    .eq("role", "staff");
+  if (error) throw error;
+}
